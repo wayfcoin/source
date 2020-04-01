@@ -1,0 +1,9 @@
+Building Wayfcoin
+
+See doc/readme-qt.rst for instructions on building Wayfcoin QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Wayfcoin.
+
+See doc/build-*.txt for instructions on building Wayfcoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Wayfcoin.

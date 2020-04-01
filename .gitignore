@@ -1,0 +1,27 @@
+src/*.exe
+src/Wayfcoin
+src/Wayfcoind
+src/test_Wayfcoin
+src/build.h
+.*.swp
+*.*~*
+*.bak
+*.rej
+*.orig
+*.o
+*.patch
+.Wayfcoin
+#compilation and Qt preprocessor part
+*.qm
+.qmake.stash
+Makefile
+Wayfcoin-qt
+#resources cpp
+qrc_*.cpp
+#qt creator
+*.pro.user
+#mac specific
+.DS_Store
+build
+
+!src/leveldb/Makefile
