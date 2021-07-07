@@ -2558,6 +2558,47 @@ Value scanforalltxns(const Array& params, bool fHelp)
     return result;
 }
 
+Value scanforunspent(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "scanforunspent [fromHeight]\n"
+            "Scan blockchain for spent transactions.");
+
+    Object result;
+    int32_t nFromHeight = 0;
+
+    CBlockIndex *pindex = pindexGenesisBlock;
+
+
+    if (params.size() > 0)
+        nFromHeight = params[0].get_int();
+
+
+    if (nFromHeight > 0)
+    {
+        pindex = mapBlockIndex[hashBestChain];
+        while (pindex->nHeight > nFromHeight
+            && pindex->pprev)
+            pindex = pindex->pprev;
+    };
+
+    if (pindex == NULL)
+        throw runtime_error("Genesis Block is not set.");
+
+    {
+        LOCK2(cs_main, pwalletMain->cs_wallet);
+
+        pwalletMain->MarkDirty();
+
+        pwalletMain->ReacceptWalletTransactions();
+    }
+
+    result.push_back(Pair("result", "Scan complete."));
+
+    return result;
+}
+
 Value scanforstealthtxns(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
